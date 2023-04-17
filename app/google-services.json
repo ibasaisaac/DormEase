@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "772528805200",
+    "project_id": "dormease-f2e62",
+    "storage_bucket": "dormease-f2e62.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:772528805200:android:bee599af8cfa1e0d86c855",
+        "android_client_info": {
+          "package_name": "com.example.dormease"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "772528805200-4gop4kv0bspmik0laehq5rfl0n91f7l4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9-ivO6liEX0KgYhn7WNmYlnvA0Cun9Yk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "772528805200-4gop4kv0bspmik0laehq5rfl0n91f7l4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

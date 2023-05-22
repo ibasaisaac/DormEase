@@ -25,6 +25,9 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.ktx.Firebase;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -33,7 +36,7 @@ public class RegisterActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private RadioGroup radioGroupRegBuilding;
     private RadioButton radioButtonRegBuildingSelected;
-//    private static final String TAG = "RegisterActivity";
+    private static final String TAG = "RegisterActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,39 +125,60 @@ public class RegisterActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     System.out.println("ok");
-                    Toast.makeText(RegisterActivity.this, "User registered successfully", Toast.LENGTH_LONG).show();
                     FirebaseUser firebaseUser = auth.getCurrentUser();
 
-                    //send verification email
-                    firebaseUser.sendEmailVerification();
+                    //enter user data into realtime database
+                    ReadWriteUserDetails writeUserDetails = new ReadWriteUserDetails(textname,textstid,textbuilding,textroomno);
 
-                    //open login page after successful reg
-                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                    //to prevent user from returning back to register activity after registration
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    //extracting user reference from database for "registered users"
+                    DatabaseReference referenceProfile = FirebaseDatabase.getInstance().getReference("Registered Users");
 
-                    startActivity(intent);
-                    finish(); //close register activity
-                }
-//                else{
-//                    // If reg fails, display a message to the user.
-//                    try {
-//                        throw task.getException();
-//                    }catch (FirebaseAuthEmailException e){
-//                        editTextRegEmail.setError("jhamela");
-//                        editTextRegEmail.requestFocus();
-//                    }catch (FirebaseAuthInvalidCredentialsException e){
-//                        editTextRegEmail.setError("jhamela2");
-//                        editTextRegEmail.requestFocus();
-//                    }catch (FirebaseAuthUserCollisionException e){
-//                        editTextRegEmail.setError("Already registered user");
-//                        editTextRegEmail.requestFocus();
-//                    }catch (Exception e){
-//                        Log.e(TAG, e.getMessage());
-//                        Toast.makeText(RegisterActivity.this, e.getMessage(),Toast.LENGTH_LONG).show();
+                    //oncompletelistener to make sure successfully committed to database or not
+                    referenceProfile.child(firebaseUser.getUid()).setValue(writeUserDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+
+                            if(task.isSuccessful())
+                            {
+                                //send verification email
+                                firebaseUser.sendEmailVerification();
+
+                                Toast.makeText(RegisterActivity.this, "User registered successfully. Please verify email.", Toast.LENGTH_LONG).show();
+
+//                                //open login page after successful reg
+//                                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+//                                //to prevent user from returning back to register activity after registration
+//                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
 //
-//                    }
-//                }
+//                                startActivity(intent);
+//                                finish(); //close register activity
+                            }else{
+                                Toast.makeText(RegisterActivity.this, "User registered failed.", Toast.LENGTH_LONG).show();
+                                progressBar.setVisibility(View.GONE);
+                            }
+                        }
+                    });
+
+                }
+                else{
+                    // If reg fails, display a message to the user.
+                    try {
+                        throw task.getException();
+                    }catch (FirebaseAuthEmailException e){
+                        editTextRegEmail.setError("jhamela");
+                        editTextRegEmail.requestFocus();
+                    }catch (FirebaseAuthInvalidCredentialsException e){
+                        editTextRegEmail.setError("jhamela2");
+                        editTextRegEmail.requestFocus();
+                    }catch (FirebaseAuthUserCollisionException e){
+                        editTextRegEmail.setError("Already registered user");
+                        editTextRegEmail.requestFocus();
+                    }catch (Exception e){
+                        Log.e(TAG, e.getMessage());
+                        Toast.makeText(RegisterActivity.this, e.getMessage(),Toast.LENGTH_LONG).show();
+
+                    }
+                }
             }
         });
     }

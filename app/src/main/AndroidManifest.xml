@@ -12,7 +12,16 @@
         android:theme="@style/Theme.DormEase"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".noticeboard"
+            android:exported="false" />
+        <activity
+            android:name=".roombooking"
+            android:exported="false" />
+        <activity
+            android:name=".complainform"
+            android:exported="false" />
+        <activity
+            android:name=".Homepage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -2,28 +2,26 @@ package com.example.dormease;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.HashMap;
-
-public class MainActivity extends AppCompatActivity {
+public class complainform extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_complain);
         Button submit = findViewById(R.id.submit);
         EditText name = findViewById(R.id.name);
         EditText id = findViewById(R.id.stid);
@@ -109,10 +107,18 @@ public class MainActivity extends AppCompatActivity {
                 complain.setText("");
                 time.setText("");
 
-                Toast.makeText(MainActivity.this, "Complaint sent", Toast.LENGTH_SHORT).show();
+                Toast.makeText(complainform.this, "Complaint sent", Toast.LENGTH_SHORT).show();
 
 
+            }
+        });
 
+        ImageView back = findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent startIntent = new Intent(getApplicationContext(), com.example.dormease.Homepage.class);
+                startActivity(startIntent);
             }
         });
 

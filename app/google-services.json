@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "525772754606",
+    "project_id": "tryabar-a28ef",
+    "storage_bucket": "tryabar-a28ef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:525772754606:android:2b3dcb5a41a7f01fb2e73f",
+        "android_client_info": {
+          "package_name": "com.example.dormease"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "525772754606-1eul9d0816d0gdml8ab4f3vt9ve95g1d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDR4lrXWcR2UVhmoaa7gJOiKqhBA9O3ZQ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "525772754606-1eul9d0816d0gdml8ab4f3vt9ve95g1d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -91,11 +91,14 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:layout_width="227dp"
+                    android:layout_width="202dp"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/loginbtn"
-                    android:layout_centerInParent="true"
-                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/loginbtn"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="100dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="95dp"
                     android:text="Forgotten Password?"
                     android:textAlignment="center"
                     android:textColor="#0391a9" />
@@ -104,8 +107,7 @@
                     android:id="@+id/progress_bar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
+                    android:layout_centerInParent="true"
                     android:elevation="10dp"
                     android:visibility="gone" />
 

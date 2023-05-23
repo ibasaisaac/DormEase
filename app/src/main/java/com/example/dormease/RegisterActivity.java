@@ -25,6 +25,7 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.ktx.Firebase;
@@ -127,8 +128,12 @@ public class RegisterActivity extends AppCompatActivity {
                     System.out.println("ok");
                     FirebaseUser firebaseUser = auth.getCurrentUser();
 
+                    //update display name of firebaseUser. now name not stored in realtime database
+                    UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder().setDisplayName(textname).build();
+                    firebaseUser.updateProfile(profileChangeRequest);
+
                     //enter user data into realtime database
-                    ReadWriteUserDetails writeUserDetails = new ReadWriteUserDetails(textname,textstid,textbuilding,textroomno);
+                    ReadWriteUserDetails writeUserDetails = new ReadWriteUserDetails(textstid,textbuilding,textroomno);
 
                     //extracting user reference from database for "registered users"
                     DatabaseReference referenceProfile = FirebaseDatabase.getInstance().getReference("Registered Users");
@@ -141,10 +146,19 @@ public class RegisterActivity extends AppCompatActivity {
                             if(task.isSuccessful())
                             {
                                 //send verification email
-                                firebaseUser.sendEmailVerification();
-
-                                Toast.makeText(RegisterActivity.this, "User registered successfully. Please verify email.", Toast.LENGTH_LONG).show();
-
+                                firebaseUser.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if(task.isSuccessful())
+                                        {
+                                            Toast.makeText(RegisterActivity.this, "User registered successfully. Please verify your email.", Toast.LENGTH_LONG).show();
+                                        }
+                                        else
+                                        {
+                                            Toast.makeText(RegisterActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                        }
+                                    }
+                                });
 //                                //open login page after successful reg
 //                                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
 //                                //to prevent user from returning back to register activity after registration
@@ -154,8 +168,8 @@ public class RegisterActivity extends AppCompatActivity {
 //                                finish(); //close register activity
                             }else{
                                 Toast.makeText(RegisterActivity.this, "User registered failed.", Toast.LENGTH_LONG).show();
-                                progressBar.setVisibility(View.GONE);
                             }
+                            progressBar.setVisibility(View.GONE);
                         }
                     });
 
@@ -176,8 +190,8 @@ public class RegisterActivity extends AppCompatActivity {
                     }catch (Exception e){
                         Log.e(TAG, e.getMessage());
                         Toast.makeText(RegisterActivity.this, e.getMessage(),Toast.LENGTH_LONG).show();
-
                     }
+                    progressBar.setVisibility(View.GONE);
                 }
             }
         });

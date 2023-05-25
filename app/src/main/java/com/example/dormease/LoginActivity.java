@@ -1,8 +1,11 @@
 package com.example.dormease;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -18,6 +21,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -75,7 +79,21 @@ public class LoginActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful())
                 {
-                    Toast.makeText(LoginActivity.this, "You are logged in", Toast.LENGTH_SHORT).show();
+                    FirebaseUser firebaseUser = authProfile.getCurrentUser();
+
+                    //check if email verified
+                    if(firebaseUser.isEmailVerified()){
+                        Toast.makeText(LoginActivity.this, "You are logged in.", Toast.LENGTH_SHORT).show();
+
+                        startActivity(new Intent(LoginActivity.this, UserProfileActivity.class));
+                        finish();
+                    }
+                    else{
+                        firebaseUser.sendEmailVerification();
+                        authProfile.signOut();
+                        showAlertDialog();
+                    }
+
                 }
                 else
                 {
@@ -101,4 +119,45 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void showAlertDialog() {
+        //setup alert builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+        builder.setTitle("Email not verified");
+        builder.setMessage("Please verify email now.");
+
+        //open email app if user press continue button
+        builder.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                //opens the list of email apps on the phone
+                intent.addCategory(Intent.CATEGORY_APP_EMAIL);
+                //email opened in new window, not withiin our app
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    //check if user logged in or not.
+    @Override
+    protected void onStart(){
+        super.onStart();
+        if(authProfile.getCurrentUser() != null)
+        {
+            Toast.makeText(this, "Already logged in", Toast.LENGTH_SHORT).show();
+
+            startActivity(new Intent(LoginActivity.this, UserProfileActivity.class));
+            finish();
+        }
+        else
+        {
+            Toast.makeText(this, "You can log in now", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }

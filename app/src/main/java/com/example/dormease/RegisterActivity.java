@@ -160,12 +160,12 @@ public class RegisterActivity extends AppCompatActivity {
                                     }
                                 });
 //                                //open login page after successful reg
-//                                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-//                                //to prevent user from returning back to register activity after registration
-//                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-//
-//                                startActivity(intent);
-//                                finish(); //close register activity
+                                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                //to prevent user from returning back to register activity after registration
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                                startActivity(intent);
+                                finish(); //close register activity
                             }else{
                                 Toast.makeText(RegisterActivity.this, "User registered failed.", Toast.LENGTH_LONG).show();
                             }

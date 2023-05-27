@@ -46,4 +46,15 @@
             android:text="New Hall" />
     </RadioGroup>
 
+    <LinearLayout
+        android:id="@+id/roomLayout"
+        android:layout_width="354dp"
+        android:layout_height="390dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/floors"
+        app:layout_constraintVertical_bias="0.043"></LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

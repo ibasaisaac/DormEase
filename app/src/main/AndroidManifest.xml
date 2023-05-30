@@ -15,7 +15,7 @@
             android:name=".noticeboard"
             android:exported="false" />
         <activity
-            android:name=".roombooking"
+            android:name=".roomManagement2"
             android:exported="false" />
         <activity
             android:name=".complainform"

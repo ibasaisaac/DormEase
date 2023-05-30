@@ -11,8 +11,16 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -20,17 +28,25 @@ import java.util.List;
 
 public class roombooking extends AppCompatActivity {
 
+    DatabaseReference roomsRef;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_roombooking);
 
+        System.out.println("Hello");
        // room_database x = new room_database();
        // x.pushToDatabase();
 
         RadioGroup radioGroup = findViewById(R.id.radiogroup_buildings);
         Spinner spinner = findViewById(R.id.floors);
         LinearLayout roomLayout = findViewById(R.id.roomLayout);
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+
+
 
       //  ArrayAdapter<String> adapterNH = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item);
       //  ArrayAdapter<String> adapterUB = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item);
@@ -70,6 +86,7 @@ public class roombooking extends AppCompatActivity {
 //        adapterUB.add("5th Floor");
 
 
+
 // Set the RadioGroup's checked change listener
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -77,8 +94,21 @@ public class roombooking extends AppCompatActivity {
 
                 if (checkedId == R.id.newhall) {
 
-                    spinner.setAdapter(floorAdapter1);
-                } else if (checkedId == R.id.utility) {
+                    roomsRef = database.getReference().child("Buildings/New Hall/Floors/1st/Rooms");
+
+                  // fetchFloors(floorsRef);
+
+
+
+
+
+                        spinner.setAdapter(floorAdapter1);
+
+
+                }
+                else if (checkedId == R.id.utility) {
+
+                    roomsRef = database.getReference().child("Buildings/Utility/Rooms");
 
                     spinner.setAdapter(floorAdapter2);
                 }
@@ -95,7 +125,12 @@ public class roombooking extends AppCompatActivity {
                 String selectedFloor = parent.getItemAtPosition(position).toString();
 
                 // Get the list of rooms for the selected floor
-                List<String> roomList = floorRoomMap1.get(selectedFloor);
+              //  List<String> roomList = floorRoomMap1.get(selectedFloor);
+
+                System.out.println("Shuru");
+                List<String> roomList = fetchRooms(roomsRef);
+
+                System.out.println("Shesh");
 
                 // Create buttons for each room and add them to the room layout
                 for (String room : roomList) {
@@ -121,4 +156,48 @@ public class roombooking extends AppCompatActivity {
         });
 
     }
+
+    private List<String> fetchRooms(DatabaseReference roomsRef) {
+
+        List<Room> roomList = new ArrayList<>();
+
+        roomsRef.addListenerForSingleValueEvent(new ValueEventListener(){
+
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                System.out.println("Dfirst");
+                for (DataSnapshot roomSnapshot : dataSnapshot.getChildren()) {
+                    System.out.println("Dhuksi");
+                    // Extract room data and create Room objects
+                    String roomNo = roomSnapshot.child("status").getValue(String.class);
+                   // String status = roomSnapshot.child("status").getValue(String.class);
+
+                    Room room = new Room(roomNo);
+                    roomList.add(room);
+
+
+                    System.out.println("Rooms are" + roomList);
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
+        });
+
+        List<String> roomNamesList = new ArrayList<>();
+
+        for (Room room : roomList) {
+            String roomName = room.getRoomNo();
+            roomNamesList.add(roomName);
+        }
+        return roomNamesList;
+    }
+
 }

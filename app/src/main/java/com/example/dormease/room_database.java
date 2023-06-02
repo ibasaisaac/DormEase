@@ -10,8 +10,8 @@ import com.google.firebase.database.ValueEventListener;
 
 public class room_database {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference roomsRef = database.getReference("Buildings/North Hall/Floors/1st/Rooms");
-    String[] roomNames = {"101", "102", "103", "104", "105", "106", "107", "108", "109", "110"};
+    DatabaseReference roomsRef = database.getReference("Buildings/Utility/Floors/5th/Rooms");
+    String[] roomNames = {"501", "502", "503", "504", "505", "506", "507", "508", "509", "510"};
 
 
 

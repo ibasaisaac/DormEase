@@ -12,10 +12,13 @@
         android:theme="@style/Theme.DormEase"
         tools:targetApi="31">
         <activity
+            android:name=".roomManagement"
+            android:exported="false" />
+        <activity
             android:name=".noticeboard"
             android:exported="false" />
         <activity
-            android:name=".roomManagement2"
+            android:name=".floorManagement"
             android:exported="false" />
         <activity
             android:name=".complainform"

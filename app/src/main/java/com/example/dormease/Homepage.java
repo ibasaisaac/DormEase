@@ -1,6 +1,5 @@
 package com.example.dormease;
 
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,7 +18,7 @@ public class Homepage extends AppCompatActivity {
         homeb3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent startIntent1 = new Intent(getApplicationContext(), com.example.dormease.roomManagement2.class);
+                Intent startIntent1 = new Intent(getApplicationContext(), floorManagement.class);
                 startActivity(startIntent1);
             }
         });

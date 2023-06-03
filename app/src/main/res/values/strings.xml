@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">DormEase</string>
+    <string name="login">LOGIN</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="welcome">WELCOME</string>
+    <string name="todo">TODO</string>
+    <string name="register">REGISTER</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>

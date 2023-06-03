@@ -56,22 +56,7 @@ import java.util.List;
             roomNo = floors.getRoomName();
             ref= floors.getRef();
 
-//            ref.addListenerForSingleValueEvent(new ValueEventListener() {
-//                @Override
-//                public void onDataChange(DataSnapshot dataSnapshot) {
-//                    if (dataSnapshot.exists()) {
-//                        // Get the status value from the fetched data
-//                        int status = dataSnapshot.child("status").getValue(Integer.class);
-//                        roomStatusTextView.setText(status);
-//
-//                    }
-//                }
-//
-//                @Override
-//                public void onCancelled(DatabaseError databaseError) {
-//                    // Handle any potential errors
-//                }
-//            });
+
 
 
 

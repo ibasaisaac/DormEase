@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#66b3c0"
+    tools:context=".RegisterActivity">
+
+    <RelativeLayout
+        android:layout_width="347dp"
+        android:layout_height="611dp"
+        android:layout_margin="15dp"
+        android:background="@drawable/background_intro"
+        android:padding="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.474">
+
+        <TextView
+            android:id="@+id/textView_register_head"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Please Enter your details"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textColor="#0391a9"
+            android:textStyle="bold" />
+
+
+        <EditText
+            android:id="@+id/edittext_reg_fullname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_register_fullname"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/border"
+            android:hint="Enter name"
+            android:inputType="textPersonName"
+            android:padding="6dp"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textView_register_fullname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_register_head"
+            android:layout_marginTop="13dp"
+            android:padding="6dp"
+            android:text="Full name"
+            android:textColor="#ff7a59"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_register_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edittext_reg_fullname"
+            android:layout_marginTop="10dp"
+            android:padding="6dp"
+            android:text="Email"
+            android:textColor="#ff7a59"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edittext_reg_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_register_email"
+            android:layout_marginTop="-1dp"
+            android:background="@drawable/border"
+            android:hint="Enter email"
+            android:inputType="textEmailAddress"
+            android:padding="6dp"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textView_register_stid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edittext_reg_email"
+            android:layout_marginTop="10dp"
+            android:padding="6dp"
+            android:text="Student ID"
+            android:textColor="#ff7a59"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edittext_reg_stid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_register_stid"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/border"
+            android:hint="Enter student ID"
+            android:inputType="number"
+            android:padding="6dp"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textview_register_building"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edittext_reg_stid"
+            android:layout_marginTop="10dp"
+            android:padding="6dp"
+            android:text="Building"
+            android:textColor="#ff7a59"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <RadioGroup
+            android:id="@+id/radiogroup_reg_building"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textview_register_building"
+            android:layout_marginTop="-10dp"
+            android:orientation="horizontal"
+            android:padding="6dp">
+
+            <RadioButton
+                android:id="@+id/radio_newhall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="50dp"
+                android:text="New Hall"
+                android:textColor="#73828a"
+                android:textSize="16sp" />
+
+            <RadioButton
+                android:id="@+id/radio_utility"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Utility"
+                android:textColor="#73828a"
+                android:textSize="16sp" />
+
+        </RadioGroup>
+
+
+        <TextView
+            android:id="@+id/textView_register_roomno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/radiogroup_reg_building"
+            android:layout_marginTop="-5dp"
+            android:padding="6dp"
+            android:text="Room No."
+            android:textColor="#ff7a59"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edittext_reg_roomno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_register_roomno"
+            android:layout_marginTop="-3dp"
+            android:background="@drawable/border"
+            android:hint="Enter Room No."
+            android:inputType="number"
+            android:padding="6dp"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textView_register_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edittext_reg_roomno"
+            android:layout_marginTop="10dp"
+            android:padding="6dp"
+            android:text="Password"
+            android:textColor="#ff7a59"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edittext_reg_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_register_password"
+            android:layout_marginTop="-4dp"
+            android:background="@drawable/border"
+            android:hint="Enter password"
+            android:inputType="textPassword"
+            android:padding="6dp"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/regbtn"
+            android:layout_width="211dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edittext_reg_password"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginRight="70dp"
+            android:background="@drawable/background_btn_intro1"
+            android:backgroundTint="#ff7a59"
+            android:text="Register"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="35dp"
+            android:layout_height="66dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:elevation="10dp"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

@@ -31,6 +31,7 @@ public class roomManagement extends AppCompatActivity{
     int flag;
     String selectedBuilding;
     List<String> roomsList;
+    DatabaseReference roomsRef;
 
     @Override
     public Context getApplicationContext() {
@@ -54,7 +55,8 @@ public class roomManagement extends AppCompatActivity{
 
         CompletableFuture<List<String>> future = new CompletableFuture<>();
         List<String> roomList = new ArrayList<>();
-        DatabaseReference roomsRef = database.getReference("Buildings/" + selectedBuilding +"/Floors/" + selectedFloor + "/Rooms");
+        roomsRef = database.getReference("Buildings/" + selectedBuilding +"/Floors/" + selectedFloor + "/Rooms");
+
 
 
         roomsRef.addListenerForSingleValueEvent(new ValueEventListener()
@@ -78,6 +80,10 @@ public class roomManagement extends AppCompatActivity{
 
 
         return future;
+    }
+    DatabaseReference getRoomRef()
+    {
+        return roomsRef;
     }
 
 

@@ -15,6 +15,9 @@
             android:name=".roomManagement"
             android:exported="false" />
         <activity
+            android:name=".roomInfoPage"
+            android:exported="false" />
+        <activity
             android:name=".noticeboard"
             android:exported="false" />
         <activity

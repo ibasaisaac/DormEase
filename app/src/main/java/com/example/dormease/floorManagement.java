@@ -1,11 +1,15 @@
 package com.example.dormease;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.GridLayout;
+import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -31,6 +35,7 @@ public class floorManagement extends AppCompatActivity{
     String selectedBuilding;
     roomManagement r = new roomManagement();
     List<String> roomsList;
+    String roomName;
 
     @Override
     public Context getApplicationContext() {
@@ -38,7 +43,15 @@ public class floorManagement extends AppCompatActivity{
     }
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference roomRef;
 
+    public String getRoomName(){
+        return roomName;
+    }
+    public DatabaseReference getRef()
+    {
+        return this.roomRef;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +66,11 @@ public class floorManagement extends AppCompatActivity{
 
         RadioGroup radioGroup = findViewById(R.id.radiogroup_buildings);
 
-        LinearLayout roomLayout = findViewById(R.id.roomLayout);
+       // LinearLayout roomLayout = findViewById(R.id.roomLayout);
+        GridLayout roomGridView = findViewById(R.id.roomGridLayout);
 
         Spinner spinner = findViewById(R.id.floors);
+
 
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -105,21 +120,64 @@ public class floorManagement extends AppCompatActivity{
                     r.getRooms(selectedFloor).thenAccept(roomList -> {
 
 
-                        roomLayout.removeAllViews();
+                        roomGridView.removeAllViews();
 
                                 for (String room : roomList) {
 
                                     Button roomButton = new Button(floorManagement.this);
                                     roomButton.setText(room);
+//                                    roomButton.setBackgroundColor(Color.parseColor("#FF7956"));
+//
+//                                    roomButton.setOnClickListener(new View.OnClickListener() {
+//                                        @Override
+//                                        public void onClick(View v) {
+//                                            // Handle button click event and show room details
+//                                            roomName = ((Button) v).getText().toString();
+//
+//                                            //  showRoomDetails(roomName);
+//                                        }
+//                                    });
+
                                     roomButton.setOnClickListener(new View.OnClickListener() {
                                         @Override
-                                        public void onClick(View v) {
-                                            // Handle button click event and show room details
-                                            String roomName = ((Button) v).getText().toString();
-                                            //  showRoomDetails(roomName);
-                                        }
-                                    });
-                                    roomLayout.addView(roomButton);
+                                    public void onClick (View v){
+                                        roomName = ((Button) v).getText().toString();
+                                        roomRef = FirebaseDatabase.getInstance().getReference().child("Rooms").child(roomName);
+
+                                            Intent startIntent = new Intent(getApplicationContext(), com.example.dormease.roomInfoPage.class);
+                                            startActivity(startIntent);
+
+                                        roomRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                                if (dataSnapshot.exists()) {
+                                                    // Get the status value from the fetched data
+                                                    int status = dataSnapshot.child("status").getValue(Integer.class);
+
+                                                    // Set the button color based on the status value
+                                                    if (status == 0) {
+                                                        // Green color
+                                                        roomButton.setBackgroundColor(Color.parseColor("#FF7956"));
+                                                    } else if (status == 1) {
+                                                        // Blue color
+                                                        roomButton.setBackgroundColor(Color.parseColor("#0079F6"));
+                                                    }
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onCancelled(DatabaseError databaseError) {
+                                                // Handle any potential errors
+                                            }
+                                        });
+
+
+
+                                    }
+                                });
+
+
+                                    roomGridView.addView(roomButton);
                                 }
 
                             }

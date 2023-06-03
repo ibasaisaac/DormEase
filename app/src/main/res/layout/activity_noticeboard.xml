@@ -8,7 +8,7 @@
     tools:context=".noticeboard">
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/resident2NameTextView"
         android:layout_width="360dp"
         android:layout_height="107dp"
         android:background="#FBFAFA"
@@ -23,7 +23,7 @@
         app:layout_constraintVertical_bias="0.974" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/resident3NameTextView"
         android:layout_width="367dp"
         android:layout_height="42dp"
         android:background="#1F913C"
@@ -38,7 +38,7 @@
         app:layout_constraintVertical_bias="0.809" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/resident1IdTextView"
         android:layout_width="369dp"
         android:layout_height="104dp"
         android:background="#FBFAFA"
@@ -53,7 +53,7 @@
         app:layout_constraintVertical_bias="0.657" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/resident1NameTextView"
         android:layout_width="367dp"
         android:layout_height="42dp"
         android:background="#E15A31"

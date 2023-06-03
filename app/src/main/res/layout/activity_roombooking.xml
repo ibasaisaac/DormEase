@@ -5,16 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Spinner
-        android:id="@+id/floors"
-        android:layout_width="364dp"
-        android:layout_height="22dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.203" />
+    <!--    <LinearLayout-->
+<!--        android:id="@+id/roomLayout"-->
+<!--        android:layout_width="354dp"-->
+<!--        android:layout_height="390dp"-->
+<!--        android:orientation="horizontal"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/floors"-->
+<!--        app:layout_constraintVertical_bias="0.043"/>-->
+
 
     <RadioGroup
         android:id="@+id/radiogroup_buildings"
@@ -26,7 +27,7 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/floors"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0">
@@ -36,25 +37,60 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:text="Utility Building" />
+            android:buttonTint="#ff7956"
+            android:text="Utility Building"
+            android:textSize="20sp" />
 
         <RadioButton
             android:id="@+id/newhall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:text="New Hall" />
+            android:buttonTint="#ff7956"
+            android:text="New Hall"
+            android:textSize="20sp" />
     </RadioGroup>
 
-    <LinearLayout
-        android:id="@+id/roomLayout"
-        android:layout_width="354dp"
-        android:layout_height="390dp"
+    <GridLayout
+        android:id="@+id/roomGridLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:columnCount="4"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/floors"
-        app:layout_constraintVertical_bias="0.043"></LinearLayout>
+        app:layout_constraintVertical_bias="0.1"
+        android:useDefaultMargins="true"/>
+
+    <Spinner
+        android:id="@+id/floors"
+        android:layout_width="364dp"
+        android:layout_height="22dp"
+        android:popupBackground="#FF7956"
+        android:scrollbarSize="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.468"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.27" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:backgroundTint="#ff7956"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toTopOf="@+id/radiogroup_buildings"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

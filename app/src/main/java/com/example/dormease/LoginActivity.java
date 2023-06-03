@@ -85,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
                     if(firebaseUser.isEmailVerified()){
                         Toast.makeText(LoginActivity.this, "You are logged in.", Toast.LENGTH_SHORT).show();
 
-                        startActivity(new Intent(LoginActivity.this, UserProfileActivity.class));
+                        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                         finish();
                     }
                     else{
@@ -151,7 +151,7 @@ public class LoginActivity extends AppCompatActivity {
         {
             Toast.makeText(this, "Already logged in", Toast.LENGTH_SHORT).show();
 
-            startActivity(new Intent(LoginActivity.this, UserProfileActivity.class));
+            startActivity(new Intent(LoginActivity.this, HomeActivity.class));
             finish();
         }
         else

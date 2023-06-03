@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if(authProfile.getCurrentUser() != null)
                 {
-                    startActivity(new Intent(MainActivity.this, UserProfileActivity.class));
+                    startActivity(new Intent(MainActivity.this, HomeActivity.class));
                     finish();
                 }
                 else {

@@ -149,10 +149,12 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
         if(authProfile.getCurrentUser() != null)
         {
-            Toast.makeText(this, "Already logged in", Toast.LENGTH_SHORT).show();
+            if(authProfile.getCurrentUser().isEmailVerified()) {
+                Toast.makeText(this, "Already logged in", Toast.LENGTH_SHORT).show();
 
-            startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-            finish();
+                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                finish();
+            }
         }
         else
         {

@@ -21,7 +21,19 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="#ffffff">
+
+            <ImageView
+                android:id="@+id/imageView15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="450dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/headerbkg" />
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -37,6 +49,146 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.005"
                 app:navigationIcon="@drawable/ic_baseline_menu_24" />
+
+            <!--            <ImageView-->
+<!--                android:id="@+id/imageView16"-->
+<!--                android:layout_width="70dp"-->
+<!--                android:layout_height="86dp"-->
+<!--                android:layout_marginBottom="916dp"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:srcCompat="@drawable/dmease" />-->
+
+            <TextView
+                android:id="@+id/textView_welcome_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Loading..."
+                android:fontFamily="@font/baloo"
+                android:textColor="#FFFFFF"
+                android:textSize="34sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.06"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.119" />
+
+            <ImageView
+                android:id="@+id/imageView18"
+                android:layout_width="65dp"
+                android:layout_height="57dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.963"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.016"
+                app:srcCompat="@drawable/notification" />
+
+            <GridLayout
+                android:layout_marginTop="85dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:alignmentMode="alignMargins"
+                android:columnCount="1"
+                android:columnOrderPreserved="false"
+                android:padding="15dp"
+                android:rowCount="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView_welcome_user">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card1"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_marginLeft="37dp"
+                    android:layout_marginRight="37dp"
+                    android:layout_marginBottom="15dp"
+                    app:cardBackgroundColor="#6d91a9"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="8dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_margin="15dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="216dp"
+                            android:layout_height="157dp"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/cp">
+
+                        </ImageView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="Complaint Form"
+                            android:textAlignment="center"
+                            android:textSize="25dp"
+                            android:fontFamily="@font/baloo">
+
+                        </TextView>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/card2"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_marginLeft="37dp"
+                    android:layout_marginRight="37dp"
+                    android:layout_marginBottom="15dp"
+                    app:cardBackgroundColor="#2190a7"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="8dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_margin="15dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="195dp"
+                            android:layout_height="150dp"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/bookroom">
+
+                        </ImageView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="Room Booking"
+                            android:textAlignment="center"
+                            android:textSize="25dp"
+                            android:fontFamily="@font/baloo">
+
+                        </TextView>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+            </GridLayout>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

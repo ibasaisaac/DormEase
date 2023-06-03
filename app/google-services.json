@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "183049999896",
+    "firebase_url": "https://dormeasereg-default-rtdb.firebaseio.com",
     "project_id": "dormeasereg",
     "storage_bucket": "dormeasereg.appspot.com"
   },

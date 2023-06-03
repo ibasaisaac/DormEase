@@ -136,7 +136,7 @@ public class UserProfileActivity extends AppCompatActivity implements Navigation
                 if(readUserDetails != null)
                 {
                     email = firebaseUser.getEmail();
-                    name =  "Hey " + firebaseUser.getDisplayName().toUpperCase();
+                    name =  firebaseUser.getDisplayName().toUpperCase();
                     stid = readUserDetails.stid;
                     building = readUserDetails.building;
                     room= readUserDetails.roomno;

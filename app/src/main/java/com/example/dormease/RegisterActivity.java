@@ -72,6 +72,8 @@ public class RegisterActivity extends AppCompatActivity {
                 String textbuilding; //cant obtain value before checking if any radio btn selected or not
                 String textroomno = editTextRegRoomno.getText().toString();
 
+                String userStatus = "0";
+
                 if(TextUtils.isEmpty(textname)){
                     Toast.makeText(RegisterActivity.this, "Please enter full name", Toast.LENGTH_LONG).show();
                     editTextRegName.setError("Full name required");
@@ -111,21 +113,20 @@ public class RegisterActivity extends AppCompatActivity {
                 {
                     textbuilding = radioButtonRegBuildingSelected.getText().toString();
                     progressBar.setVisibility(View.VISIBLE);
-                    registerUser(textname,textemail,textstid,textbuilding,textroomno,textpass);
+                    registerUser(textname,textemail,textstid,textbuilding,textroomno,textpass,userStatus);
                 }
             }
         });
 
     }
 
-    private void registerUser(String textname, String textemail, String textstid, String textbuilding, String textroomno, String textpass) {
+    private void registerUser(String textname, String textemail, String textstid, String textbuilding, String textroomno, String textpass, String userStatus) {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         auth.createUserWithEmailAndPassword(textemail,textpass).addOnCompleteListener(RegisterActivity.this,
                 new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    System.out.println("ok");
                     FirebaseUser firebaseUser = auth.getCurrentUser();
 
                     //update display name of firebaseUser. now name not stored in realtime database
@@ -133,7 +134,7 @@ public class RegisterActivity extends AppCompatActivity {
                     firebaseUser.updateProfile(profileChangeRequest);
 
                     //enter user data into realtime database
-                    ReadWriteUserDetails writeUserDetails = new ReadWriteUserDetails(textstid,textbuilding,textroomno);
+                    ReadWriteUserDetails writeUserDetails = new ReadWriteUserDetails(textstid,textbuilding,textroomno,userStatus);
 
                     //extracting user reference from database for "registered users"
                     DatabaseReference referenceProfile = FirebaseDatabase.getInstance().getReference("Registered Users");

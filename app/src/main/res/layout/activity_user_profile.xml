@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_btn_intro1"
+    android:background="@drawable/background_profile"
     tools:context=".UserProfileActivity"
     android:fitsSystemWindows="true"
     tools:openDrawer="start"

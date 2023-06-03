@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
     Handler h = new Handler();
@@ -24,10 +25,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                if(authProfile.getCurrentUser() != null)
+                FirebaseUser firebaseUser = authProfile.getCurrentUser();
+
+                if(firebaseUser != null)
                 {
-                    startActivity(new Intent(MainActivity.this, HomeActivity.class));
-                    finish();
+                    if(firebaseUser.isEmailVerified()) {
+                        startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                        finish();
+                    }
                 }
                 else {
                     Intent i = new Intent(MainActivity.this, FirstActivity.class);
